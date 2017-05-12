@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> 
+					addEventListener("load", function() { 
+						setTimeout(hideURLbar, 0); }, false);
+					function hideURLbar(){ window.scrollTo(0,1); } 
+		</script>
+    <!-- 要使用jquery，必须加上这个外引，而且在js文件夹中，放置jquery-1.11.1.js文件 -->
+	<script type="text/javascript" src="js/jquery-1.11.1.js"></script> 
+	<script type="text/javascript">
+		 function checkname(){  
+		    var value = $("#userName").val();
+		    // alert(value);
+             $.ajax({  
+               type:"get",//请求方式  
+               url:"CheckUserNameServlet?userName=" + value,//发送请求地址  
+               timeout:30000,//超时时间：30秒  
+               dataType:"json",//设置返回数据的格式  
+               //请求成功后的回调函数 data为json格式  
+               success:function(data){  
+                  var flag = data.flag;
+                  if(flag == "true"){
+                     $("#userInfo").html( value + "已经被使用了,请换一个用户名！")
+                  }
+              },  
+              //请求出错的处理  
+              error:function(){  
+                        alert("请求出错");  
+              }  
+           });  
+          } 
+	</script>
+	<!-- 以下采用匿名函数的方式来处理，目前大多都是采用这种方式 -->
+	 <script type="text/javascript">  
+                //使用id的方式获取  
+                $(document).ready(function(){  
+                    //1  这表示当id为email的标签触发onblur事件的时候，将执行以下的函数，这里面可以放Ajax调用
+                    $("#email").blur(function(){  
+                        alert("哈哈，你确定要写这个email地址吗？") ;
+                    });  
+                    //2  这表示当id为button_text2的标签被单击的时候触发函数执行
+                    $("#button_text2").click(function(){  
+                        var result2 = $("input[id='input_text2']").val();  
+                        alert("result2 = " + result2);  
+                    });  
+                    //3  这表示当id为button_text3的标签被单击的时候触发函数执行
+                    $("#button_text3").click(function(){  
+                        var result3 = $("input[id='input_text3']").attr("value");  
+                        alert("result3 = " + result3);  
+                    });  
+                    //4. 可以通过type的值来获取input中的值（未演示）  
+                    /*  
+                    $("#button_text4").click(function(){  
+                        var result4 = $("input[type='text']").val();  
+                        alert("result4 = " + result4);  
+                    });  
+                    */  
+                    //5. 可以通过name的值来获取input中的值（未演示）  
+                    /*  
+                    $("#button_text5").click(function(){  
+                        var result5 = $("input[name='text']").val();  
+                        alert("result5 = " + result5);  
+                    });           
+                    */  
+                });  
+             </script> 
+	</head>
+	<body>
+		<div class="main">
+			<div class="header">
+				<h1>
+					Login or Create a Free Account!
+				</h1>
+			</div>
+			<form>
+				<ul class="left-form">
+					<h2>
+						New Account:
+					</h2>
+					<li>
+						<input type="text" id="userName" placeholder="Username" onchange="checkname()"  required/>
+						<a href="#" class="icon ticker"> </a>
+						<div id="userInfo"></div>
+						<div class="clear">
+						</div>
+					</li>
+					<li>
+						<input type="text" id="email" placeholder="Email" required />
+						<a href="#" class="icon ticker"> </a>
+						<div class="clear">
+						</div>
+					</li>
+					<li>
+						<input type="password" placeholder="password" required />
+						<a href="#" class="icon into"> </a>
+						<div class="clear">
+						</div>
+					</li>
+					<li>
+						<input type="password" placeholder="password" required />
+						<a href="#" class="icon into"> </a>
+						<div class="clear">
+						</div>
+					</li>
+					<input type="submit" onClick="myFunction()" value="Create Account">
+				</ul>
+				<div class="clear">
+				</div>
+			</form>
+	</body>
+</html>
