@@ -3,3 +3,5 @@
 2、本项目采用了net.sf.json.JSONArray和net.sf.json.JSONObject实现json数据项和json数组的管理
 3、在jsp页面中采用ajax实现对json格式数据解析
 4、在Ajax中采用jquery实现对html标签的动态数据加载
+
+这个项目是可以作为一个比较完整的案例说明！！！
